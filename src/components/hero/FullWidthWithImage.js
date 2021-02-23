@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 
 import Header, { LogoLink, NavLinks, NavLink as NavLinkBase } from "../headers/light.js";
-import Carousel from "components/carousel/Carousel.js";
+// import Carousel from "components/carousel/Carousel.js";
 
 const StyledHeader = styled(Header)`
   ${tw`justify-between`}
@@ -84,7 +84,7 @@ export default ({
           </Content>
         </LeftColumn>
         {/* <RightColumn> */}
-          <Carousel />
+          {/* <Carousel /> */}
         {/* </RightColumn> */}
       </TwoColumn>
     </Container>
