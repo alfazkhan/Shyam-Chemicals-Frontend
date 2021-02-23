@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts";
 import Header from "components/headers/light.js";
-import Footer from "components/footers/SimpleFiveColumn.js";
+import Footer from "components/footers/MiniCenteredFooter.js";
 import { Document, Page, pdfjs } from "react-pdf";
 import ShyamChemicalsBrochure from '../pdf/ShyamChemicalsBrochure.pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;

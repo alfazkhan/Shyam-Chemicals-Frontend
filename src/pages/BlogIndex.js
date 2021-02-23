@@ -51,7 +51,7 @@ const LoadMoreButton = tw(PrimaryButton)`mt-16 mx-auto`;
 
 export class BlogIndex extends Component {
   render() {
-    const headingText = "Our Products"
+    const headingText = "Applications"
     const posts = 
     {
       imageSrc:
