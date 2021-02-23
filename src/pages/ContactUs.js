@@ -3,7 +3,7 @@ import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import Header from "components/headers/light.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
+import Footer from "components/footers/MiniCenteredFooter.js";
 import ContactUsForm from "components/forms/TwoColContactUsWithIllustration.js";
 import ContactDetails from "components/cards/ThreeColContactDetails.js";
 
@@ -20,80 +20,18 @@ export default () => {
       <ContactDetails
         cards={[
           {
-            title: "New York",
+            title: "Surendra Khator",
             description: (
               <>
-                <Address>
-                  <AddressLine>40 Gates Court</AddressLine>
-                  <AddressLine>Endicott, NY 13760</AddressLine>
+                <a target="0" href="https://www.google.com/maps/place/Shyam+Chemicals+%26+Minerals/@26.9971311,75.7373208,13z/data=!4m8!1m2!2m1!1sE-412,+Road+No.+14+V.K.I.+Area,+Near+Dehli+Rajasthan+Transport+Co.,+Jaipur-302013!3m4!1s0x396db27001edb35d:0xf471318eee44abdf!8m2!3d26.9971311!4d75.7723397"><Address>
+                  <AddressLine>E-412, Road No. 14</AddressLine>
+                  <AddressLine>V.K.I. Area, Near Dehli Rajasthan Transport Co., Jaipur-302013</AddressLine>
                 </Address>
-                <Email>contact@treact.com</Email>
-                <Phone>+1 (203) 991-6988</Phone>
-              </>
-            )
-          },
-          {
-            title: "Illinois",
-            description: (
-              <>
-                <Address>
-                  <AddressLine>602 Annadale Drive</AddressLine>
-                  <AddressLine>Dekalb, IL 60115</AddressLine>
-                </Address>
-                <Email>contact@treact.com</Email>
-                <Phone>+1 (203) 991-6988</Phone>
-              </>
-            )
-          },
-          {
-            title: "California",
-            description: (
-              <>
-                <Address>
-                  <AddressLine>96 NE. Delaware Lane</AddressLine>
-                  <AddressLine>Sacramento, CA 95820</AddressLine>
-                </Address>
-                <Email>contact@treact.com</Email>
-                <Phone>+1 (203) 991-6988</Phone>
-              </>
-            )
-          },
-          {
-            title: "Tennessee",
-            description: (
-              <>
-                <Address>
-                  <AddressLine>74 Peachtree Ave.</AddressLine>
-                  <AddressLine>Dyersburg, TN 38024</AddressLine>
-                </Address>
-                <Email>contact@treact.com</Email>
-                <Phone>+1 (203) 991-6988</Phone>
-              </>
-            )
-          },
-          {
-            title: "New Jersey",
-            description: (
-              <>
-                <Address>
-                  <AddressLine>8355 Summer Street</AddressLine>
-                  <AddressLine>Manchester, NJ 08759</AddressLine>
-                </Address>
-                <Email>contact@treact.com</Email>
-                <Phone>+1 (203) 991-6988</Phone>
-              </>
-            )
-          },
-          {
-            title: "Ohio",
-            description: (
-              <>
-                <Address>
-                  <AddressLine>7713 Snake Hill Ave.</AddressLine>
-                  <AddressLine>Piqua, OH 45356</AddressLine>
-                </Address>
-                <Email>contact@treact.com</Email>
-                <Phone>+1 (203) 991-6988</Phone>
+                </a>
+                <a target="0" href="mailto:info@shyamchemicals.co.in"><Email>info@shyamchemicals.co.in</Email></a>
+                <a href="tel:1412239708" target="0"><Phone>+91-141-2239708</Phone></a>
+                <a href="tel:9829866681" target="0"><Phone>+91-98298-66681</Phone></a>
+                <a href="tel:9829050467" target="0"><Phone>+91-98290-50467</Phone></a>
               </>
             )
           }
