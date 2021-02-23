@@ -34,8 +34,8 @@ export default () => {
                         <Document
                             file={ShyamChemicalsBrochure}
                             onLoadSuccess={onDocumentLoadSuccess}
-                            // renderMode="svg"
-                            loading="<div>Loading...</div>"
+                            renderMode="svg"
+                            loading="Loading..."
 
                         >
                             <Page pageNumber={pageNumber} size="LEGAL" wrap={false} />
