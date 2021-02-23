@@ -6,7 +6,7 @@ const Container = tw.div``;
 
 
 
-export class carousel extends Component {
+export class Carousel extends Component {
 
     state = {
         imageURL: []
@@ -67,7 +67,7 @@ export class carousel extends Component {
     }
 }
 
-export default carousel
+export default Carousel
 
 
 
