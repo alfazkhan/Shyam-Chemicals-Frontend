@@ -11,7 +11,7 @@ import ReactModalAdapter from "../../helpers/ReactModalAdapter.js";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-1.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/dot-pattern.svg";
 import DesignIllustration from "../../images/design-illustration.svg";
-import Carousel from "components/carousel/Carousel.js";
+import Carousel from "../carousel/Carousel";
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-20 md:py-24`;
