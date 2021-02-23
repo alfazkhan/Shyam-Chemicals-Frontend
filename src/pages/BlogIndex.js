@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component } from 'react'
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts";
 import tw from "twin.macro";
@@ -46,46 +46,26 @@ const Description = tw.div``;
 const ButtonContainer = tw.div`flex justify-center`;
 const LoadMoreButton = tw(PrimaryButton)`mt-16 mx-auto`;
 
-export default ({
-  headingText = "Blog Posts",
-  posts = [
+
+
+
+export class BlogIndex extends Component {
+  render() {
+    const headingText = "Our Products"
+    const posts = 
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
-      category: "Travel Tips",
-      date: "April 21, 2020",
-      title: "Safely Travel in Foreign Countries",
+        "https://5.imimg.com/data5/WV/DC/MY-36580823/calcium-carbonate-500x500.jpg",
+      // category: "Travel Tips",
+      // date: "April 21, 2020",
+      title: "Calcium",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      url: "https://timerse.com",
-      featured: true
-    },
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost()
-  ]
-}) => {
-  const [visible, setVisible] = useState(7);
-  const onLoadMoreClick = () => {
-    setVisible(v => v + 6);
-  };
-  return (
-    <AnimationRevealPage>
+        "Backed by rich industry experience and knowledge, we have been able to manufacture, export and supply highly pure Pvd Salt. Offered salt is widely used in oil drilling operation. In addition to this, it is hygienically processed using superior quality ingredients and brine in compliance with international food norms. Our quality inspectors rigorously checks this salt on various parameters to ensure its high quality. Moreover, this Pvd Salt is available in different packaging options and keep it safe from contamination.",
+      // url: "https://timerse.com",
+      featured: true 
+    }
+    return (
+      <AnimationRevealPage>
       <Header />
       <Container>
         <ContentWithPaddingXl>
@@ -93,39 +73,31 @@ export default ({
             <Heading>{headingText}</Heading>
           </HeadingRow>
           <Posts>
-            {posts.slice(0, visible).map((post, index) => (
-              <PostContainer key={index} featured={post.featured}>
-                <Post className="group" as="a" href={post.url}>
-                  <Image imageSrc={post.imageSrc} />
-                  <Info>
-                    <Category>{post.category}</Category>
-                    <CreationDate>{post.date}</CreationDate>
-                    <Title>{post.title}</Title>
-                    {post.featured && post.description && <Description>{post.description}</Description>}
-                  </Info>
-                </Post>
-              </PostContainer>
-            ))}
+
+            <PostContainer  featured={posts.featured}>
+              <Post className="group" as="a" href={posts.url}>
+                <Image imageSrc={posts.imageSrc} />
+                <Info>
+                  <Category>{posts.category}</Category>
+                  <CreationDate>{posts.date}</CreationDate>
+                  <Title>{posts.title}</Title>
+                  {posts.featured && posts.description && <Description>{posts.description}</Description>}
+                </Info>
+              </Post>
+            </PostContainer>
+
           </Posts>
-          {visible < posts.length && (
+          {/* {visible < posts.length && (
             <ButtonContainer>
               <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
             </ButtonContainer>
-          )}
+          )} */}
         </ContentWithPaddingXl>
       </Container>
       <Footer />
     </AnimationRevealPage>
-  );
-};
+    )
+  }
+}
 
-const getPlaceholderPost = () => ({
-  imageSrc:
-    "https://images.unsplash.com/photo-1418854982207-12f710b74003?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
-  category: "Travel Guide",
-  date: "April 19, 2020",
-  title: "Visit the beautiful Alps in Switzerland",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  url: "https://reddit.com"
-});
+export default BlogIndex
