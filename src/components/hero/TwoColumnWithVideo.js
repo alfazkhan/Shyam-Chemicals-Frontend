@@ -18,7 +18,7 @@ const LeftColumn = tw.div`relative lg:w-6/12 lg:pr-12 flex-shrink-0 text-center 
 const RightColumn = tw.div`relative mt-12 lg:mt-0 flex flex-col justify-center`;
 
 const Heading = tw.h1`font-black text-3xl md:text-5xl leading-snug max-w-3xl`;
-const Paragraph = tw.p`my-5 lg:my-8 text-sm lg:text-base font-medium text-gray-600 max-w-lg mx-auto lg:mx-0`;
+const Paragraph = tw.p`my-5 lg:my-8 text-justify text-sm lg:text-base font-medium text-gray-600 max-w-lg mx-auto lg:mx-0`;
 
 const Actions = styled.div`
   ${tw`mb-8 lg:mb-0`}

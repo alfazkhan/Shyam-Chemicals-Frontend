@@ -15,7 +15,7 @@ export class Carousel extends Component {
     componentDidMount() {
         const imageURL = []
         for (var i = 0; i < 10; i++) {
-            imageURL.push('https://picsum.photos/id/' + Math.floor(Math.random() * 100) + '/1440/1024')
+            imageURL.push('https://picsum.photos/id/' + Math.floor(Math.random() * 100) + '/640/360')
         }
         console.log(imageURL)
         this.setState({

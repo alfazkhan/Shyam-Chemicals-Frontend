@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component } from 'react'
 import Slider from "react-slick";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
 import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
 import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
+import Axios from '../../Axios';
 
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`;
@@ -52,7 +53,7 @@ const RatingsInfo = styled.div`
 `;
 const Rating = tw.span`ml-2 font-bold`;
 
-const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`;
+const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4 text-justify`;
 
 const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`;
 const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`;
@@ -65,108 +66,105 @@ const IconContainer = styled.div`
 const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`;
 
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
-export default () => {
-  // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
-  const [sliderRef, setSliderRef] = useState(null);
-  const sliderSettings = {
-    arrows: false,
-    slidesToShow: 3,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
 
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 1,
-        }
-      },
-    ]
-  };
 
-  /* Change this according to your needs */
-  const cards = [
-    {
-      imageSrc: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Wyatt Residency",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Rome, Italy",
-      pricingText: "USD 39/Day",
-      rating: "4.8",
-    },
-    {
-      imageSrc: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Soho Paradise",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Ibiza, Spain",
-      pricingText: "USD 50/Day",
-      rating: 4.9,
-    },
-    {
-      imageSrc: "https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Hotel Baja",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Palo Alto, CA",
-      pricingText: "USD 19/Day",
-      rating: "5.0",
-    },
-    {
-      imageSrc: "https://images.unsplash.com/photo-1571770095004-6b61b1cf308a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Hudak Homes",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Arizona, RAK",
-      pricingText: "USD 99/Day",
-      rating: 4.5,
-    },
-  ]
 
-  return (
-    <Container>
-      <Content>
-        <HeadingWithControl>
-          <Heading>Popular Hotels</Heading>
-          <Controls>
-            <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
-            <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
-          </Controls>
-        </HeadingWithControl>
-        <CardSlider ref={setSliderRef} {...sliderSettings}>
-          {cards.map((card, index) => (
-            <Card key={index}>
-              <CardImage imageSrc={card.imageSrc} />
-              <TextInfo>
-                <TitleReviewContainer>
-                  <Title>{card.title}</Title>
-                  <RatingsInfo>
-                    <StarIcon />
-                    <Rating>{card.rating}</Rating>
-                  </RatingsInfo>
-                </TitleReviewContainer>
-                <SecondaryInfoContainer>
-                  <IconWithText>
-                    <IconContainer>
-                      <LocationIcon />
-                    </IconContainer>
-                    <Text>{card.locationText}</Text>
-                  </IconWithText>
-                  <IconWithText>
-                    <IconContainer>
-                      <PriceIcon />
-                    </IconContainer>
-                    <Text>{card.pricingText}</Text>
-                  </IconWithText>
-                </SecondaryInfoContainer>
-                <Description>{card.description}</Description>
-              </TextInfo>
-              <PrimaryButton>Book Now</PrimaryButton>
-            </Card>
-          ))}
-        </CardSlider>
-      </Content>
-    </Container>
-  );
-};
+
+export class ThreeColSlider extends Component {
+  state = {
+    sliderRef: React.createRef(),
+    feedbacks: []
+  }
+
+  componentDidMount=async()=> {
+    const feedbacks = await Axios.get('/api/feedback')
+    // console.log(this.state.sliderRef.current)
+    setInterval(() => {
+      this.state.sliderRef.current.slickNext()
+    }, 3000); 
+    this.setState({
+      feedbacks: feedbacks.data
+    })
+  }
+
+  slickNextHandler=()=>{
+    this.state.sliderRef.current.slickNext()
+  }
+
+  slickPrevHandler=()=>{
+    this.state.sliderRef.current.slickPrev()
+  }
+  
+  render() {
+    // const [sliderRef, setSliderRef] = useState(null);
+    const sliderSettings = {
+      arrows: false,
+      slidesToShow: 3,
+      responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 2,
+          }
+        },
+
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 1,
+          }
+        },
+      ]
+    };
+
+    /* Change this according to your needs */
+    
+    return (
+      <Container>
+        <Content>
+          <HeadingWithControl>
+            <Heading>Customer Feedbacks</Heading>
+            <Controls>
+              <PrevButton onClick={this.slickPrevHandler}><ChevronLeftIcon /></PrevButton>
+              <NextButton onClick={this.slickNextHandler}><ChevronRightIcon /></NextButton>
+            </Controls>
+          </HeadingWithControl>
+          <CardSlider ref={this.state.sliderRef} {...sliderSettings}>
+            {this.state.feedbacks.map(feedback => (
+              <Card key={feedback._id}>
+                {/* <CardImage imageSrc={"https://picsum.photos/200/800"} /> */}
+                <TextInfo>
+                  <TitleReviewContainer>
+                    <Title>{feedback.name}</Title>
+                    <RatingsInfo>
+                      {/* <StarIcon /> */}
+                      {/* <Rating>{feedback.rating}</Rating> */}
+                    </RatingsInfo>
+                  </TitleReviewContainer>
+                  <SecondaryInfoContainer>
+                    {/* <IconWithText>
+                      <IconContainer>
+                        <LocationIcon />
+                      </IconContainer> */}
+                      <Text>{feedback.company_name}</Text>
+                    {/* </IconWithText> */}
+                    {/* <IconWithText>
+                      <IconContainer>
+                        <PriceIcon />
+                      </IconContainer>
+                      <Text>{feedback.message}</Text>
+                    </IconWithText> */}
+                  </SecondaryInfoContainer>
+                  <Description>{feedback.message}</Description>
+                </TextInfo>
+                {/* <PrimaryButton>Book Now</PrimaryButton> */}
+              </Card>
+            ))}
+          </CardSlider>
+        </Content>
+      </Container>
+    )
+  }
+}
+
+export default ThreeColSlider

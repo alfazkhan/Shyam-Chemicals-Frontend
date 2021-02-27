@@ -28,7 +28,7 @@ const PostContainer = styled.div`
         ${tw`sm:-mr-4 sm:pl-8 sm:flex-1 sm:rounded-none sm:rounded-r-lg sm:border-t-2 sm:border-l-0`}
       }
       ${Description} {
-        ${tw`text-sm mt-3 leading-loose text-gray-600 font-medium`}
+        ${tw`text-sm mt-3 leading-loose text-gray-600 text-justify font-medium`}
       }
     `}
 `;

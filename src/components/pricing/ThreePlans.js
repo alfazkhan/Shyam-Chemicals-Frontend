@@ -12,7 +12,7 @@ import Products from "components/products/Products";
 const HeaderContainer = tw.div`mt-5 w-full flex flex-col items-center`;
 const Subheading = tw(SubheadingBase)`mb-4`;
 const Heading = tw(SectionHeading)`w-full`;
-const Description = tw(SectionDescription)`w-full flex-col text-center max-w-5xl `;
+const Description = tw(SectionDescription)`w-full flex-col text-justify max-w-5xl `;
 
 const PlansContainer = tw.div`flex justify-between flex-col lg:flex-row items-center lg:items-stretch relative col-span-12`;
 const Plan = styled.div`

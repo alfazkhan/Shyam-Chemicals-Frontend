@@ -5,8 +5,7 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import Header from "components/headers/light.js";
 import Footer from "components/footers/MiniCenteredFooter.js";
 import ContactUsForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
-import ContactDetails from "components/cards/ThreeColContactDetails.js";
-
+import Testimonial from '../components/cards/ThreeColSlider'
 const Address = tw.span`leading-relaxed`;
 const AddressLine = tw.span`block`;
 const Email = tw.span`text-sm mt-6 block text-gray-500`;
@@ -17,7 +16,7 @@ export default () => {
     <AnimationRevealPage>
       <Header />
       <ContactUsForm />
-      
+      <Testimonial/>
       <Footer />
     </AnimationRevealPage>
   );

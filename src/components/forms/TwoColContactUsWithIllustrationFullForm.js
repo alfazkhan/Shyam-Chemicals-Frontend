@@ -5,6 +5,8 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 import EmailIllustrationSrc from "images/happy-illustration.svg";
+import Axios from '../../Axios';
+import { withRouter } from 'react-router-dom';
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -35,10 +37,62 @@ const SubmitButton = tw(PrimaryButtonBase)`inline-block mt-8`
 
 
 export class TwoColContactUsWithIllustrationFullForm extends Component {
+
+
+  state = {
+    name: "",
+    email_id: "",
+    mobile_no: "",
+    company_name: "",
+    address: "",
+    message: ""
+  }
+
+  componentDidMount() {
+    this.setState({
+      name: ""
+    })
+    // console.log(this.props.history)
+  }
+  
+
+  inputHandler=(e)=>{
+    var state = this.state
+    const value = e.target.value
+    switch(e.target.name){
+      case "name":
+        state.name = value;
+        break;
+      case "email":
+        state.email_id = value;
+        break;
+      case "phone":
+        state.mobile_no = value;
+        break;
+      case "company":
+        state.company_name = value;
+        break;
+      case "address":
+        state.address = value;
+        break;
+      case "message":
+        state.message = value;
+        break;
+    }
+
+    this.setState({...state})
+
+  }
+
+  submitFeedbackHander=async()=>{
+    const response = await Axios.post('api/feedback',this.state)
+    this.props.history.go(0)
+  }
+
   render() {
     const subheading = "Contact Us"
     const heading = <>Feel free to <span tw="text-primary-500">get in touch</span><wbr /> with us.</>
-    const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    const description = ""
     const submitButtonText = "Send"
     const formAction = "#"
     const formMethod = "get"
@@ -55,14 +109,14 @@ export class TwoColContactUsWithIllustrationFullForm extends Component {
               <Heading>{heading}</Heading>
               {description && <Description>{description}</Description>}
               <Form action={formAction} method={formMethod}>
-                <Input type="text" name="name" placeholder="Full Name" />
-                <Input type="email" name="email" placeholder="Your Email Address" />
-                <Input type="phone" name="phone" placeholder="Phone Number (+91)" />
-                <Input type="text" name="company" placeholder="Company Name" />
-                <Textarea name="address" placeholder="Your Address" />
-                <Textarea name="message" placeholder="Your Message Here" />
-                <SubmitButton type="submit">{submitButtonText}</SubmitButton>
+                <Input type="text" onChange={this.inputHandler} name="name" placeholder="Full Name" />
+                <Input type="email" name="email" placeholder="Your Email Address" onChange={this.inputHandler}/>
+                <Input type="phone" name="phone" placeholder="Phone Number (+91)" onChange={this.inputHandler}/>
+                <Input type="text" name="company" placeholder="Company Name" onChange={this.inputHandler}/>
+                <Textarea name="address" placeholder="Your Address" onChange={this.inputHandler}/>
+                <Textarea name="message" placeholder="Your Message Here" onChange={this.inputHandler}/>
               </Form>
+                <SubmitButton onClick={this.submitFeedbackHander}>{submitButtonText}</SubmitButton>
             </TextContent>
           </TextColumn>
         </TwoColumn>
@@ -72,4 +126,4 @@ export class TwoColContactUsWithIllustrationFullForm extends Component {
 }
 
 
-export default TwoColContactUsWithIllustrationFullForm
+export default withRouter(TwoColContactUsWithIllustrationFullForm)
