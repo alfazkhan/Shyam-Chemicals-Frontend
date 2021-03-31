@@ -2,7 +2,7 @@ import axios from 'axios';
 import { decryption } from 'helpers/encryption';
 
 const Axios = axios.create({
-  baseURL: `http://3.7.254.237/`,
+  baseURL: `http://api.shyamchemicals.co.in/`,
   headers:{
     'Content-Type': 'application/json',
    
