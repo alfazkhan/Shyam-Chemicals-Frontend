@@ -6,6 +6,8 @@ import { ReactComponent as SvgDecoratorBlob } from "images/svg-decorator-blob-6.
 import TypeofProducts from './TypeofProducts';
 import SC1 from './SC1';
 import { Subheading as SubheadingBase } from "components/misc/Headings.js";
+import SC2 from './SC2';
+import SC3 from './SC3';
 
 const DecoratorBlob = styled(SvgDecoratorBlob)`
   ${tw`pointer-events-none -z-20 absolute left-0  h-64 w-64 opacity-25 transform -translate-x-1/2 translate-y-1/2`}
@@ -47,38 +49,8 @@ export class Products extends Component {
             <div tw="" >
                 <TypeofProducts/>
                 <SC1/>
-                <Subheading>Product Specifications Of Imported Calcite Powder<wbr /> <span className="text-danger"> SC2</span> </Subheading>
-                {
-                    this.Table(
-                        {
-                            header: [
-                                {
-                                    title: 'Chemical Composition',
-                                    
-                                },
-                                {
-                                    title: 'SC-2',
-                                    
-                                }
-                            ],
-                            rows: [
-                                {
-                                    content: ['Colour', "50 kg HDPE bags / 25 kg bags Or as per customer requirments"],
-                                    
-                                },
-                                {
-                                    content: ['Whiteness', "Sheet / Float Glass Indutries"],
-                                    
-                                },
-                                {
-                                    content: ['Typical Properties of Calcite'],
-                                    
-                                },
-
-                            ],
-                        }
-                    )
-                }
+                <SC2 Table={this.Table}/>
+                <SC3 Table={this.Table} />
 
 
                 < DecoratorBlob />

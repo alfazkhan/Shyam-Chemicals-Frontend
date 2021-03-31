@@ -1,3 +1,4 @@
+import Axios from '../../Axios';
 import React, { Component } from 'react'
 import tw from "twin.macro";
 
@@ -12,11 +13,20 @@ export class Carousel extends Component {
         imageURL: []
     }
 
-    componentDidMount() {
+    componentDidMount = async () => {
         const imageURL = []
-        for (var i = 0; i < 10; i++) {
-            imageURL.push('https://picsum.photos/id/' + Math.floor(Math.random() * 100) + '/640/360')
-        }
+        let images = await Axios.get('api/slideshow')
+        images = images.data
+        images.map(i => {
+            if (i.show) {
+                imageURL.push('http://3.7.254.237:8080/' + i.image)
+            }
+        })
+
+
+        // for (var i = 0; i < 10; i++) {
+        //     imageURL.push('https://picsum.photos/id/' + Math.floor(Math.random() * 100) + '/640/360')
+        // }
         console.log(imageURL)
         this.setState({
             imageURL: imageURL
@@ -32,22 +42,26 @@ export class Carousel extends Component {
                     <div className="carousel-indicators">
                         {this.state.imageURL.map((i, index) => {
                             return (
-                                <button key={index} 
-                                type="button" 
-                                data-bs-target="#carouselExampleIndicators" 
-                                data-bs-slide-to={index} aria-label={"Slide " + (index + 1)}
-                                className={index===0?"active":""}
+                                <button key={index}
+                                    type="button"
+                                    data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to={index} aria-label={"Slide " + (index + 1)}
+                                    className={index === 0 ? "active" : ""}
                                 />
-                                
+
                             )
                         })}
                     </div>
                     <div className="carousel-inner">
-                        
+
                         {this.state.imageURL.map((image, index) => {
                             return (
-                                <div className={index===0?"carousel-item active":"carousel-item "} >
-                                    <img loading="lazy" src={image} className="d-block w-100" alt="..." />
+                                <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item "}  >
+                                    {/* <img src={image} 
+                                    className="w-100 h-100" alt="..." 
+                                    style={{ objectFit: 'contain' }} 
+                                    /> */}
+                                    <img src={image} style={{ objectFit: 'contain' }} className="w-100 h-100 img-thumbnail" />
                                 </div>
                             )
                         })}

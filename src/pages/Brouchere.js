@@ -3,8 +3,8 @@ import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
 import styled from "styled-components";
 
-import {     ContentWithPaddingXl } from "components/misc/Layouts";
-import {SectionHeading, Subheading } from "components/misc/Headings";
+import { ContentWithPaddingXl } from "components/misc/Layouts";
+import { SectionHeading, Subheading } from "components/misc/Headings";
 import Header from "components/headers/light.js";
 import Footer from "components/footers/MiniCenteredFooter.js";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -20,10 +20,12 @@ const SwitchButton = styled.button`
   ${tw`w-1/2 sm:w-32 px-4 sm:px-8 py-3 rounded-full focus:outline-none text-sm font-bold text-gray-700 transition duration-300`}
   ${props => props.active && tw`bg-primary-500 text-gray-100`}
 `;
-const Container = tw.div`relative`;
+const Container = tw.div`relative my-10`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-20 md:py-24`;
 const LeftColumn = tw.div`relative justify-center lg:pr-0 flex-shrink-0 text-center lg:text-left`;
 const RightColumn = tw.div`relative mt-12 lg:mt-0 flex flex-col justify-center`;
+const HeadingRow = tw.div`flex pt-10 justify-center`;
+const Heading = tw(SectionHeading)`text-gray-900`;
 
 export default () => {
     const [numPages, setNumPages] = useState(null);
@@ -35,27 +37,25 @@ export default () => {
         <AnimationRevealPage>
             <Header />
             <div className="container">
-
-                <TwoColumn>
-                    <LeftColumn>
-                        {
-                            pageNumber === 1
-                                ?
-                                <img loading="lazy" src={ShyamChemicalsBrochure01} className="d-block w-50" alt="..." />
-                                :
-                                <img loading="lazy" src={ShyamChemicalsBrochure02} className="d-block w-50" alt="..." />
-                        }
-                    </LeftColumn>
-                    <RightColumn>
-                        <SectionHeading>Hello</SectionHeading>
-                    </RightColumn>
-                </TwoColumn>
+                <HeadingRow>
+                    <Heading>Our Brouchure</Heading>
+                </HeadingRow>
                 <Container>
-                    <PageSwitcher>
+                    <div className="row">
+
+                        <embed className="col-10 mx-auto " src={ShyamChemicalsBrochure}
+                            style={{ height: window.innerHeight / 1 }}
+                        />
+                    </div>
+                </Container>
+
+
+                {/* <div className="row">
+                    <PageSwitcher className="col-12">
                         <SwitchButton active={pageNumber === 1} onClick={() => setPageNumber(1)}>Page 1</SwitchButton>
                         <SwitchButton active={pageNumber === 2} onClick={() => setPageNumber(2)}>Page 2</SwitchButton>
                     </PageSwitcher>
-                </Container>
+                </div> */}
             </div>
 
             <Footer />

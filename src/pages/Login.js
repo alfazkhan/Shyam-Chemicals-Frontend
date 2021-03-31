@@ -8,7 +8,7 @@ import Logo from "images/Logo.png";
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 import { withRouter } from "react-router-dom";
 import Axios from "../Axios";
-import {encryption,decryption} from '../helpers/encryption'
+import {encryption} from '../helpers/encryption'
 
 const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
@@ -52,7 +52,7 @@ class Login extends Component {
 
   componentDidMount() {
     const token = localStorage.getItem('token');
-    if(token !== ""){
+    if(token !== "" && token !== null ){
       this.props.history.push('/admin-dashboard')
     }
 
@@ -67,6 +67,7 @@ class Login extends Component {
   loginHandler = async () => {
     const response = await Axios.post('api/user/login',this.state)
     localStorage.setItem('token', encryption(response.data.token)); 
+    this.props.history.push('/admin-dashboard')
     // console.log(response.data.token)
     
   }

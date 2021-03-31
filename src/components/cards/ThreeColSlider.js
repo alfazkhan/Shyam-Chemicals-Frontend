@@ -76,30 +76,30 @@ export class ThreeColSlider extends Component {
     feedbacks: []
   }
 
-  componentDidMount=async()=> {
+  componentDidMount = async () => {
     const feedbacks = await Axios.get('/api/feedback')
-    // console.log(this.state.sliderRef.current)
+    console.log(feedbacks.data)
     setInterval(() => {
       this.state.sliderRef.current.slickNext()
-    }, 3000); 
+    }, 3000);
     this.setState({
       feedbacks: feedbacks.data
     })
   }
 
-  slickNextHandler=()=>{
+  slickNextHandler = () => {
     this.state.sliderRef.current.slickNext()
   }
 
-  slickPrevHandler=()=>{
+  slickPrevHandler = () => {
     this.state.sliderRef.current.slickPrev()
   }
-  
+
   render() {
     // const [sliderRef, setSliderRef] = useState(null);
     const sliderSettings = {
       arrows: false,
-      slidesToShow: 3,
+      slidesToShow: 1,
       responsive: [
         {
           breakpoint: 1280,
@@ -118,7 +118,7 @@ export class ThreeColSlider extends Component {
     };
 
     /* Change this according to your needs */
-    
+
     return (
       <Container>
         <Content>
@@ -130,36 +130,39 @@ export class ThreeColSlider extends Component {
             </Controls>
           </HeadingWithControl>
           <CardSlider ref={this.state.sliderRef} {...sliderSettings}>
-            {this.state.feedbacks.map(feedback => (
-              <Card key={feedback._id}>
-                {/* <CardImage imageSrc={"https://picsum.photos/200/800"} /> */}
-                <TextInfo>
-                  <TitleReviewContainer>
-                    <Title>{feedback.name}</Title>
-                    <RatingsInfo>
-                      {/* <StarIcon /> */}
-                      {/* <Rating>{feedback.rating}</Rating> */}
-                    </RatingsInfo>
-                  </TitleReviewContainer>
-                  <SecondaryInfoContainer>
-                    {/* <IconWithText>
+            {this.state.feedbacks.map(feedback => {
+              if (feedback.show) {
+                return(
+                <Card key={feedback._id}>
+                  {/* <CardImage imageSrc={"https://picsum.photos/200/800"} /> */}
+                  <TextInfo>
+                    <TitleReviewContainer>
+                      <Title>{feedback.name}</Title>
+                      <RatingsInfo>
+                        {/* <StarIcon /> */}
+                        {/* <Rating>{feedback.rating}</Rating> */}
+                      </RatingsInfo>
+                    </TitleReviewContainer>
+                    <SecondaryInfoContainer>
+                      {/* <IconWithText>
                       <IconContainer>
                         <LocationIcon />
                       </IconContainer> */}
                       <Text>{feedback.company_name}</Text>
-                    {/* </IconWithText> */}
-                    {/* <IconWithText>
+                      {/* </IconWithText> */}
+                      {/* <IconWithText>
                       <IconContainer>
                         <PriceIcon />
                       </IconContainer>
                       <Text>{feedback.message}</Text>
                     </IconWithText> */}
-                  </SecondaryInfoContainer>
-                  <Description>{feedback.message}</Description>
-                </TextInfo>
-                {/* <PrimaryButton>Book Now</PrimaryButton> */}
-              </Card>
-            ))}
+                    </SecondaryInfoContainer>
+                    <Description>{feedback.message}</Description>
+                  </TextInfo>
+                  {/* <PrimaryButton>Book Now</PrimaryButton> */}
+                </Card>)
+              }
+            })}
           </CardSlider>
         </Content>
       </Container>

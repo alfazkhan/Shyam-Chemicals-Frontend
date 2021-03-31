@@ -108,6 +108,7 @@ import MainLandingPage from "./demos/HotelTravelLandingPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Brouchere from "pages/Brouchere";
 import AdminDashboard from "pages/AdminDashboard";
+import AdminTabDashboard from "pages/AdminTabDashboard";
 
 
 
@@ -165,7 +166,7 @@ export class App extends Component {
             <LoginPage />
           </Route>
           <Route exact path="/admin-dashboard">
-            <AdminDashboard />
+            <AdminTabDashboard />
           </Route>
         </Switch>
       </Router>

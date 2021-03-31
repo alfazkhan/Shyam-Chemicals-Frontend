@@ -45,7 +45,8 @@ export class TwoColContactUsWithIllustrationFullForm extends Component {
     mobile_no: "",
     company_name: "",
     address: "",
-    message: ""
+    message: "",
+    show: false
   }
 
   componentDidMount() {
@@ -86,6 +87,7 @@ export class TwoColContactUsWithIllustrationFullForm extends Component {
 
   submitFeedbackHander=async()=>{
     const response = await Axios.post('api/feedback',this.state)
+    console.log(response)
     this.props.history.go(0)
   }
 
