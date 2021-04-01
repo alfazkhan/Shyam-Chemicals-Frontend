@@ -97,7 +97,7 @@ export class BlogIndex extends Component {
                   return (
                     <PostContainer>
                       <Post className="group">
-                        <Image imageSrc={'http://3.7.254.237:8080/'+application.image} />
+                        <Image imageSrc={'https://api.shyamchemical.co.in/'+application.image} />
                         <Info>
                           {/* <Category>{posts.category}</Category> */}
                           {/* <CreationDate>{posts.date}</CreationDate> */}
