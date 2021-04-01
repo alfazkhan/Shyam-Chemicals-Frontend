@@ -274,7 +274,7 @@ export class Applications extends Component {
 
                                             <tr key={application._id}>
                                                 <td>{application.title}</td>
-                                                <td><img src={'http://3.7.254.237:8080/' + application.image} className=" h-auto w-100 img-thumbnail" /></td>
+                                                <td><img src={'https://api.shyamchemical.co.in/' + application.image} className=" h-auto w-100 img-thumbnail" /></td>
                                                 <td>{application.description}</td>
                                                 <td>
                                                     {

@@ -268,7 +268,7 @@ export class SlideShow extends Component {
                                         return (
 
                                             <tr key={Image._id}>
-                                                <td><img src={'http://3.7.254.237:8080/' + Image.image} className="img-thumbnail" style={{ height: 100, width: 'auto' }} /></td>
+                                                <td><img src={'https://api.shyamchemical.co.in/' + Image.image} className="img-thumbnail" style={{ height: 100, width: 'auto' }} /></td>
                                                 {/* <td>{Image.description}</td> */}
                                                 <td>
                                                     {
