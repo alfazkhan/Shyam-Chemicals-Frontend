@@ -19,7 +19,7 @@ export class Carousel extends Component {
         images = images.data
         images.map(i => {
             if (i.show) {
-                imageURL.push('http://3.7.254.237:8080/' + i.image)
+                imageURL.push('https://api.shyamchemical.co.in/' + i.image)
             }
         })
 
