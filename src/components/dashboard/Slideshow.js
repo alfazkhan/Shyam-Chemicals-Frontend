@@ -90,7 +90,7 @@ export class SlideShow extends Component {
                                 <form>
                                     <div className="mb-3">
                                         <label className="form-label">Current Image</label>
-                                        <img src={'http://3.7.254.237:8080/' + Image.image} style={{ height: 100, width: 'auto' }} className="img-thumbnail" />
+                                        <img src={'https://api.shyamchemical.co.in/' + Image.image} style={{ height: 100, width: 'auto' }} className="img-thumbnail" />
                                         <input type="file" className="form-control" id="exampleInputEmail1" onChange={this.imageInputHandler} />
                                         <div id="emailHelp" className="form-text">Try Landscape Image</div>
                                     </div>
